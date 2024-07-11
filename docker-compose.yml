@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   database:
-    image: redis
+    image: svbarawkar/todo-image:latest
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 1234
@@ -11,9 +11,9 @@ services:
       - "3306:3306"
 
   backend:
-     image: nginx
+     image: to-do-application-backend:latest 
      build:
-      context: ./TodoApp  # Path to your React.js frontend Dockerfile
+      context: ./Backend/TodoApp  # Path to your SpringBoot backend Dockerfile
       dockerfile: Dockerfile
      ports:
       - "8080:8080"
@@ -27,8 +27,9 @@ services:
       - my-network
 
   frontend:
+     image: to-do-application-frontend:latest 
      build:
-      context: ./to-do-app  # Path to your React.js frontend Dockerfile
+      context: ./Fronted/InternshipTask/to-do-app  # Path to your React.js frontend Dockerfile
       dockerfile: Dockerfile
      ports:
       - "3000:3000"
